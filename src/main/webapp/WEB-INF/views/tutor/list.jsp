@@ -20,7 +20,7 @@
     }
 </style>
 
-<h1>Animais cadastrados:</h1>
+<h1>Tutores cadastrados:</h1>
 
 <br/>
 <br/>
@@ -28,23 +28,19 @@
 <table>
     <thead>
         <tr>
-            <td>Foto</td>
             <td>Id</td>
+            <td>Foto</td>
             <td>Nome</td>
-            <td>Porte</td>
-            <td>Tipo</td>
-            <td>Idade</td>
+            <td>CPF</td>
         </tr>
     </thead>
     <tbody>
-        <c:forEach items="${animals}" var="animal">
+        <c:forEach items="${tutores}" var="tutor">
             <tr>
-                <td><img src="${animal.fotoURL}" alt="${animal.nome}"></td>
-                <td>${animal.id}</td>
-                <td>${animal.nome}</td>
-                <td>${animal.animalPorte}</td>
-                <td>${animal.animalTipo}</td>
-                <td>${animal.idade} anos</td>
+                <td>${tutor.id}</td>
+                <td><img src="${tutor.fotoURL}" alt="${tutor.nome}"></td>
+                <td>${tutor.nome}</td>
+                <td>${tutor.cpf}</td>
             </tr>
         </c:forEach>
     </tbody>

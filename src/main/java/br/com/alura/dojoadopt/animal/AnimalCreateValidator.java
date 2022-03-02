@@ -18,6 +18,8 @@ public class AnimalCreateValidator implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
+        if (errors.hasErrors()) return;
+
         AnimalCreateDTO animalCreateDTO = (AnimalCreateDTO) target;
 
         if (animalRepository.existsByNomeAndAnimalTipo(animalCreateDTO.getNome(), animalCreateDTO.getAnimalTipo())) {

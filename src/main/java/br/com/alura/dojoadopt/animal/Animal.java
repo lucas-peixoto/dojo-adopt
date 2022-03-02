@@ -1,19 +1,41 @@
 package br.com.alura.dojoadopt.animal;
 
+import org.hibernate.validator.constraints.URL;
+
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 
 @Entity
+@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "nome", "animal_tipo" }) })
 public class Animal {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
+    @Size(max = 50)
     private String nome;
+
+    @NotNull
+    @Min(1000)
     private Long custoMensal;
+
+    @NotNull
+    @PastOrPresent
     private LocalDate dataNascimento;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
     private AnimalTipo animalTipo;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
     private AnimalPorte animalPorte;
+
+    @URL
+    @NotNull
     private String fotoURL;
 
     public Animal() {}
