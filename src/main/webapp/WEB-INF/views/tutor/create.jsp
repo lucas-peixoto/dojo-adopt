@@ -1,56 +1,62 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="partials" tagdir="/WEB-INF/tags/partials" %>
 
+<partials:header/>
 
-<h1>Cadastrar Tutor:</h1>
-
-<br/>
-<br/>
-
-<form:form modelAttribute="tutorCreateDTO" method="post" action="/tutor/create">
-
-    <label>Nome:</label>
-    <form:input path="nome"/>
-    <form:errors path="nome" cssStyle="color: red"/>
+<div class="container my-5">
+    <h1>Cadastrar Tutor:</h1>
 
     <br/>
     <br/>
 
-    <label>CPF:</label>
-    <form:input type="text" path="cpf"/>
-    <form:errors path="cpf" cssStyle="color: red"/>
+    <form:form modelAttribute="tutorCreateDTO" method="post" action="/tutor/create">
 
-    <br/>
-    <br/>
+        <label class="form-label">Nome:</label>
+        <form:input cssClass="form-control" path="nome"/>
+        <form:errors path="nome" cssClass="text-danger"/>
 
-    <label>Foto (URL):</label>
-    <form:input path="fotoURL"/>
-    <form:errors path="fotoURL" cssStyle="color: red"/>
+        <br/>
+        <br/>
 
-    <br/>
-    <br/>
+        <label class="form-label">CPF:</label>
+        <form:input cssClass="form-control" type="text" path="cpf"/>
+        <form:errors path="cpf" cssClass="text-danger"/>
 
-    <label>Data de nascimento:</label>
-    <form:input type="date" path="dataNascimento"/>
-    <form:errors path="dataNascimento" cssStyle="color: red"/>
+        <br/>
+        <br/>
 
-    <br/>
-    <br/>
+        <label class="form-label">Foto (URL):</label>
+        <form:input cssClass="form-control" path="fotoURL"/>
+        <form:errors path="fotoURL" cssClass="text-danger"/>
 
-    <label>Remuneração:</label>
-    <form:input type="number" path="remuneracao"/>
-    <form:errors path="remuneracao" cssStyle="color: red"/>
+        <br/>
+        <br/>
 
-    <br/>
-    <br/>
+        <label class="form-label">Data de nascimento:</label>
+        <form:input cssClass="form-control" type="date" path="dataNascimento"/>
+        <form:errors path="dataNascimento" cssClass="text-danger"/>
 
-    <label>Tipo de Moradia:</label>
-    <form:select path="moradia" items="${moradias}"/>
-    <form:errors path="moradia" cssStyle="color: red"/>
+        <br/>
+        <br/>
 
-    <br/>
-    <br/>
+        <label class="form-label">Remuneração:</label>
+        <form:input cssClass="form-control" type="number" path="remuneracao"/>
+        <form:errors path="remuneracao" cssClass="text-danger"/>
 
-    <form:button>Cadastrar</form:button>
+        <br/>
+        <br/>
 
-</form:form>
+        <label class="form-label">Tipo de Moradia:</label>
+        <form:select cssClass="form-control" path="moradia" items="${moradias}"/>
+        <form:errors path="moradia" cssClass="text-danger"/>
+
+        <br/>
+        <br/>
+
+        <form:button class="btn btn-primary">Cadastrar</form:button>
+
+    </form:form>
+</div>
+
+<partials:footer/>

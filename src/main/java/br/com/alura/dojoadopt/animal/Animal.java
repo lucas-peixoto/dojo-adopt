@@ -1,5 +1,6 @@
 package br.com.alura.dojoadopt.animal;
 
+import br.com.alura.dojoadopt.tutor.Tutor;
 import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.*;
@@ -7,7 +8,7 @@ import javax.validation.constraints.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "nome", "animal_tipo" }) })
+@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "nome", "animalTipo" }) })
 public class Animal {
 
     @Id
@@ -17,6 +18,9 @@ public class Animal {
     @NotBlank
     @Size(max = 50)
     private String nome;
+
+    @ManyToOne
+    private Tutor tutor;
 
     @NotNull
     @Min(1000)

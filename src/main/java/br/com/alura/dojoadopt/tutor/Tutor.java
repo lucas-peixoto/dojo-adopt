@@ -1,10 +1,13 @@
 package br.com.alura.dojoadopt.tutor;
 
+import br.com.alura.dojoadopt.animal.Animal;
 import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Tutor {
@@ -20,6 +23,9 @@ public class Tutor {
     @NotBlank
     @Column(unique = true)
     private String cpf;
+
+    @OneToMany
+    private List<Animal> animais = new ArrayList<>();
 
     @NotNull
     @PastOrPresent
@@ -72,6 +78,10 @@ public class Tutor {
 
     public Moradia getMoradia() {
         return moradia;
+    }
+
+    public void adopt(Animal animal) {
+        animais.add(animal);
     }
 
     public enum Moradia {

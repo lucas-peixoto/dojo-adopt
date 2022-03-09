@@ -1,56 +1,59 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="partials" tagdir="/WEB-INF/tags/partials" %>
 
+<partials:header/>
 
-<h1>Cadastrar Animal:</h1>
+<div class="container my-5">
+    <h1>Cadastrar Animal:</h1>
 
-<br/>
-<br/>
+    <form:form modelAttribute="animalCreateDTO" method="post" action="/animal/create">
 
-<form:form modelAttribute="animalCreateDTO" method="post" action="/animal/create">
+        <label class="form-label">Nome:</label>
+        <form:input cssClass="form-control" path="nome"/>
+        <form:errors cssClass="text-danger" path="nome"/>
 
-    <label>Nome:</label>
-    <form:input path="nome"/>
-    <form:errors path="nome" cssStyle="color: red"/>
+        <br/>
+        <br/>
 
-    <br/>
-    <br/>
+        <label class="form-label">Custo Mensal:</label>
+        <form:input type="number" cssClass="form-control" path="custoMensal"/>
+        <form:errors cssClass="text-danger" path="custoMensal"/>
 
-    <label>Custo Mensal:</label>
-    <form:input type="number" path="custoMensal"/>
-    <form:errors path="custoMensal" cssStyle="color: red"/>
+        <br/>
+        <br/>
 
-    <br/>
-    <br/>
+        <label class="form-label">Data de nascimento:</label>
+        <form:input type="date" cssClass="form-control" path="dataNascimento"/>
+        <form:errors cssClass="text-danger" path="dataNascimento"/>
 
-    <label>Data de nascimento:</label>
-    <form:input type="date" path="dataNascimento"/>
-    <form:errors path="dataNascimento" cssStyle="color: red"/>
+        <br/>
+        <br/>
 
-    <br/>
-    <br/>
+        <label class="form-label">Tipo do Animal:</label>
+        <form:select cssClass="form-control" path="animalTipo" items="${animalTipo}"/>
+        <form:errors cssClass="text-danger" path="animalTipo"/>
 
-    <label>Tipo do Animal:</label>
-    <form:select path="animalTipo" items="${animalTipo}"/>
-    <form:errors path="animalTipo" cssStyle="color: red"/>
+        <br/>
+        <br/>
 
-    <br/>
-    <br/>
+        <label class="form-label">Porte do Animal:</label>
+        <form:select cssClass="form-control" path="animalPorte" items="${animalPorte}"/>
+        <form:errors cssClass="text-danger" path="animalPorte"/>
 
-    <label>Porte do Animal:</label>
-    <form:select path="animalPorte" items="${animalPorte}"/>
-    <form:errors path="animalPorte" cssStyle="color: red"/>
+        <br/>
+        <br/>
 
-    <br/>
-    <br/>
+        <label class="form-label">Foto do Animal (URL):</label>
+        <form:input cssClass="form-control" path="fotoURL"/>
+        <form:errors cssClass="text-danger" path="fotoURL"/>
 
-    <label>Foto do Animal (URL):</label>
-    <form:input path="fotoURL"/>
-    <form:errors path="fotoURL" cssStyle="color: red"/>
+        <br/>
+        <br/>
 
-    <br/>
-    <br/>
+        <form:button class="btn btn-primary">Cadastrar</form:button>
 
-    <form:button>Cadastrar</form:button>
+    </form:form>
+</div>
 
-</form:form>
+<partials:footer/>
