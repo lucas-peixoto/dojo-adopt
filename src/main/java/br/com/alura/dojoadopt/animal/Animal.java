@@ -100,4 +100,8 @@ public class Animal {
     public boolean temPorte(AnimalPorte animalPorte) {
         return animalPorte.equals(this.animalPorte);
     }
+
+    public boolean podeSerAdotadoPor(Tutor tutor) {
+        return !tutor.eDonoDe(this) && tutor.podeCobrirGastosDe(this) && getAnimalTipo().podeSerAdotadoPor(tutor);
+    }
 }

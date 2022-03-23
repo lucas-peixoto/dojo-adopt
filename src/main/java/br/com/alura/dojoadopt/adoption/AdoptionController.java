@@ -22,8 +22,13 @@ public class AdoptionController {
 
     @GetMapping("/adocao/{tutorId}")
     public String adoptionForm(@PathVariable Long tutorId, Model model) {
-        TutorView tutorView = tutorRepository.findById(tutorId).map(TutorView::new).orElseThrow(NotFoundException::new);
-        List<AnimalView> animaisDisponiveis = animalRepository.findAll().stream().map(AnimalView::new).toList();
+        Tutor tutor = tutorRepository.findById(tutorId).orElseThrow(NotFoundException::new);
+        TutorView tutorView = new TutorView(tutor);
+
+        List<AnimalView> animaisDisponiveis = animalRepository.findAll().stream()
+                .filter(animal -> animal.podeSerAdotadoPor(tutor))
+                .map(AnimalView::new)
+                .toList();
 
         model.addAttribute("tutor", tutorView);
         model.addAttribute("animaisDisponiveis", animaisDisponiveis);
@@ -36,8 +41,8 @@ public class AdoptionController {
         Tutor tutor = tutorRepository.findById(tutorId).orElseThrow(NotFoundException::new);
         Animal animal = animalRepository.findById(animalId).orElseThrow(NotFoundException::new);
 
-        if (!tutor.podeCobrirGastosDe(animal)) {
-            return "redirect:/adocao/%d?error=O tutor não pode cobrir os gastos desse animal".formatted(tutor.getId());
+        if (!animal.podeSerAdotadoPor(tutor)) {
+            return "redirect:/adocao/%d".formatted(tutor.getId());
         }
 
         tutor.adopt(animal);

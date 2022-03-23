@@ -112,20 +112,16 @@ public class Tutor {
         return animais.stream().anyMatch(animal -> animal.eDoTipo(animalTipo));
     }
 
-    public boolean temAnimalTipoGato() {
-        return animais.stream().anyMatch(animal -> animal.eDoTipo(AnimalTipo.GATO));
-    }
-
-    public boolean temAnimalTipoCachorro() {
-        return animais.stream().anyMatch(animal -> animal.eDoTipo(AnimalTipo.CACHORRO));
-    }
-
     public List<Animal> getAnimaisTipo(AnimalTipo animalTipo) {
         return animais.stream().filter(animal -> animal.eDoTipo(animalTipo)).toList();
     }
 
     public boolean moraEm(Moradia moradia) {
         return moradia.equals(this.moradia);
+    }
+
+    public boolean eDonoDe(Animal animal) {
+        return animais.contains(animal);
     }
 
     public enum Moradia {

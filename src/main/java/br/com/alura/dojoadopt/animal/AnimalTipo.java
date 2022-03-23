@@ -2,7 +2,7 @@ package br.com.alura.dojoadopt.animal;
 
 import br.com.alura.dojoadopt.tutor.Tutor;
 
-import java.util.function.Function;
+import java.util.List;
 
 import static br.com.alura.dojoadopt.animal.AnimalPorte.GIGANTE;
 import static br.com.alura.dojoadopt.animal.AnimalPorte.GRANDE;
@@ -17,14 +17,14 @@ public enum AnimalTipo {
     REPTIL {
         @Override
         public boolean podeSerAdotadoPor(Tutor tutor) {
-            return (!tutor.temAnimalTipoGato() && !tutor.temAnimalTipoCachorro()) || tutor.moraEm(Tutor.Moradia.SITIO);
+            return (!tutor.temAnimalTipo(GATO) && !tutor.temAnimalTipo(CACHORRO)) || tutor.moraEm(Tutor.Moradia.SITIO);
         }
     },
     CACHORRO {
         @Override
         public boolean podeSerAdotadoPor(Tutor tutor) {
             if (tutor.moraEm(Tutor.Moradia.APARTAMENTO)) {
-                return tutor.getAnimais().stream().filter(animal -> animal.eDoTipo(CACHORRO)).filter(animal -> GIGANTE.equals(animal.getAnimalPorte()) || GRANDE.equals(animal.getAnimalPorte())).toList().isEmpty();
+                return tutor.getAnimaisTipo(CACHORRO).stream().map(Animal::getAnimalPorte).filter(animalPorte -> List.of(GIGANTE, GRANDE).contains(animalPorte)).toList().isEmpty();
             }
 
             return true;
