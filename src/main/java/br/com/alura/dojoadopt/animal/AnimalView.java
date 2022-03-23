@@ -36,6 +36,10 @@ public class AnimalView {
         return custoMensal;
     }
 
+    public double getCustoMensalEmReais() {
+        return custoMensal / 100.0;
+    }
+
     public LocalDate getDataNascimento() {
         return dataNascimento;
     }

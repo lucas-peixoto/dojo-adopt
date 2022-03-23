@@ -20,7 +20,10 @@ public class Animal {
     private String nome;
 
     @ManyToOne
+    @JoinColumn(name = "tutor_id")
     private Tutor tutor;
+
+    private LocalDate adoptionDate;
 
     @NotNull
     @Min(1000)
@@ -65,6 +68,10 @@ public class Animal {
         return custoMensal;
     }
 
+    public double getCustoMensalEmReais() {
+        return custoMensal / 100.0;
+    }
+
     public LocalDate getDataNascimento() {
         return dataNascimento;
     }
@@ -79,5 +86,18 @@ public class Animal {
 
     public String getFotoURL() {
         return fotoURL;
+    }
+
+    public void addTutor(Tutor tutor) {
+        this.tutor = tutor;
+        this.adoptionDate = LocalDate.now();
+    }
+
+    public boolean eDoTipo(AnimalTipo animalTipo) {
+        return animalTipo.equals(this.animalTipo);
+    }
+
+    public boolean temPorte(AnimalPorte animalPorte) {
+        return animalPorte.equals(this.animalPorte);
     }
 }

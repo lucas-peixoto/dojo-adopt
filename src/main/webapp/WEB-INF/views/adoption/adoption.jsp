@@ -45,7 +45,7 @@
                     <td>${animal.animalTipo}</td>
                     <td>${animal.idade} anos</td>
                     <td>
-                        <form action="/adocao/${tutor.id}/${animal.id}" method="post">
+                        <form action="/adocao/tutor/${tutor.id}/animal/${animal.id}" method="post">
                             <button class="btn btn-primary" type="button" onclick="confirm('Deseja realmente adotar esse animal?') ? this.parentElement.submit() : ''">Adotar</button>
                         </form>
                     </td>

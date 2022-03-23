@@ -1,5 +1,6 @@
 package br.com.alura.dojoadopt.tutor;
 
+import br.com.alura.dojoadopt.exceptions.NotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -29,6 +30,14 @@ public class TutorController {
         model.addAttribute("tutores", tutores);
 
         return "tutor/list";
+    }
+
+    @GetMapping("/tutor/perfil/{tutorId}")
+    public String show(@PathVariable Long tutorId, Model model) {
+        TutorView tutor = tutorRepository.findById(tutorId).map(TutorView::new).orElseThrow(NotFoundException::new);
+        model.addAttribute("tutor", tutor);
+
+        return "tutor/perfil";
     }
 
     @GetMapping("/tutor/create")

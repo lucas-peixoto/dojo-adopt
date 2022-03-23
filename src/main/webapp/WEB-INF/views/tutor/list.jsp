@@ -45,7 +45,10 @@
                 <td><img src="${tutor.fotoURL}" alt="${tutor.nome}"></td>
                 <td>${tutor.nome}</td>
                 <td>${tutor.cpf}</td>
-                <td><a href="/adocao/${tutor.id}" class="btn btn-primary">Adotar animal</a></td>
+                <td>
+                    <a href="/tutor/perfil/${tutor.id}" class="btn btn-success">Ver perfil</a>
+                    <a href="/adocao/${tutor.id}" class="btn btn-primary">Adotar animal</a>
+                </td>
             </tr>
         </c:forEach>
     </tbody>

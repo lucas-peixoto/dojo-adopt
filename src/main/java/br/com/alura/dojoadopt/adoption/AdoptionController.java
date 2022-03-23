@@ -31,14 +31,18 @@ public class AdoptionController {
         return "adoption/adoption";
     }
 
-    @PostMapping("/adocao/{tutorId}/{animalId}")
+    @PostMapping("/adocao/tutor/{tutorId}/animal/{animalId}")
     public String adoption(@PathVariable Long tutorId, @PathVariable Long animalId, Model model) {
         Tutor tutor = tutorRepository.findById(tutorId).orElseThrow(NotFoundException::new);
         Animal animal = animalRepository.findById(animalId).orElseThrow(NotFoundException::new);
 
+        if (!tutor.podeCobrirGastosDe(animal)) {
+            return "redirect:/adocao/%d?error=O tutor não pode cobrir os gastos desse animal".formatted(tutor.getId());
+        }
+
         tutor.adopt(animal);
         tutorRepository.save(tutor);
 
-        return "redirect:/tutor";
+        return "redirect:/tutor/perfil";
     }
 }
